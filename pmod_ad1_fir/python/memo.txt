@@ -1,0 +1,16 @@
+verilog// 現在のコード
+ST_WAIT0 :  begin
+                if(WAIT_cnt==12'd16) begin state <= ST_V0; end
+verilog// 10KHz対応の修正
+ST_WAIT0 :  begin
+                if(WAIT_cnt==12'd2400) begin state <= ST_V0; end    // 16→2400に変更
+            end
+ST_WAIT1 :  begin
+                if(WAIT_cnt==12'd2400) begin state <= ST_V1; end    // 16→2400に変更
+            end
+ST_WAIT2 :  begin
+                if(WAIT_cnt==12'd2400) begin state <= ST_V2; end    // 16→2400に変更
+            end
+ST_WAIT3 :  begin
+                if(WAIT_cnt==12'd2400) begin state <= ST_V3; end    // 16→2400に変更
+            end
