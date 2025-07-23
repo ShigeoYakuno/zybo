@@ -38,8 +38,8 @@ module adc_realtime_uart (
     parameter CONV_INTERVAL = 12500;    // 125MHz / 12500 = 10kHz
     
     // サンプリング制御
-    logic [13:0] sample_cnt;
-    parameter MAX_SAMPLES = 20000;
+    logic [15:0] sample_cnt;
+    parameter MAX_SAMPLES = 10000;
     logic sampling_enable;
     logic filter_mode;                  // 0: Raw ADC data (A command), 1: Filtered data (F command)
     
@@ -57,11 +57,12 @@ module adc_realtime_uart (
     logic cmd_led_off;                  // 'c' コマンド
     
     // データ送信制御
-    typedef enum logic [1:0] {
+    typedef enum logic [2:0] {
         TX_IDLE,
         TX_HIGH_BYTE,
+        TX_WAIT_1,
         TX_LOW_BYTE,
-        TX_WAIT
+        TX_WAIT_2
     } tx_state_t;
     
     tx_state_t tx_state;
@@ -267,9 +268,18 @@ module adc_realtime_uart (
                     end
                     
                     if (data_ready_for_tx) begin
-                        tx_state <= TX_HIGH_BYTE;
+                        tx_state <= TX_WAIT_1;
                         tx_data <= tx_data_16bit[15:8];  // 上位8bit送信
                         tx_act <= 1'b1;
+                        tx_wait_cnt <= 5;  // 少し待機
+                    end
+                end
+
+                TX_WAIT_1: begin
+                    if (tx_wait_cnt > 0) begin
+                        tx_wait_cnt <= tx_wait_cnt - 1;
+                    end else begin
+                        tx_state <= TX_HIGH_BYTE;
                     end
                 end
                 
@@ -283,12 +293,12 @@ module adc_realtime_uart (
                 
                 TX_LOW_BYTE: begin
                     if (!tx_busy) begin
-                        tx_state <= TX_WAIT;
+                        tx_state <= TX_WAIT_2;
                         tx_wait_cnt <= 5;  // 少し待機
                     end
                 end
                 
-                TX_WAIT: begin
+                TX_WAIT_2: begin
                     if (tx_wait_cnt > 0) begin
                         tx_wait_cnt <= tx_wait_cnt - 1;
                     end else begin
