@@ -1,0 +1,53 @@
+# Vivado
+*.jou
+*.log
+*.str
+*.tmp
+*.bak
+
+.cache/
+.hw/
+.ip_user_files/
+.sim/
+.runs/
+
+# Vitis
+.metadata/
+Debug/
+Release/
+
+# VSCode
+.vscode/
+
+# Generated
+*.gen/
+
+# SDK/Vitis temp
+RemoteSystemsTempFiles/
+
+# Vivado generated
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+
+# Vivado cache dirs
+.cache/
+.hw/
+.ip_user_files/
+.runs/
+
+# Logs
+*.jou
+*.log
+*.str
+
+# Temp
+Xil/
+
+# Vitis build
+Debug/
+Release/
+.metadata/
+
+backup/
