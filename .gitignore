@@ -1,0 +1,70 @@
+# ============================================================
+# Vivado 生成ファイル (再生成可能なため除外)
+# ============================================================
+project_1.cache/
+project_1.gen/
+project_1.hw/
+project_1.ip_user_files/
+project_1.runs/
+project_1.sim/
+project_1.srcs/utils_1/
+
+# Vivado ログ・一時ファイル
+*.jou
+*.log
+*.str
+*.backup.jou
+*.backup.log
+vivado_pid*.str
+
+# ============================================================
+# Claude Code 設定 (非公開)
+**/.claude/
+
+# ============================================================
+# Vitis ワークスペース 生成・キャッシュファイル
+# (各サブフォルダの .gitignore でも除外済み)
+# ============================================================
+**/build/
+**/export/
+**/logs/
+**/.wsdata/
+**/.rigel_lopper/
+
+# Vitis platform (XSAから再生成可能な生成物)
+**/platform/hw/
+**/platform/ps7_cortexa9_0/
+**/platform/zynq_fsbl/
+**/platform/qemu/
+**/platform/sdt/
+**/workspace_journal*.py
+**/ide_verbose.log
+**/ide.log
+**/vitis.log
+**/version.ini
+**/.vitisPlatformRepo.json
+**/.peers.ini
+**/.repo.yaml
+**/.cache/
+**/.compile_commands/
+**/compile_commands.json
+**/.clangd
+**/CMakeFiles/
+**/CMakeCache.txt
+**/cmake_install.cmake
+**/build.ninja
+**/.ninja_deps
+**/.ninja_log
+**/.buildstatus
+**/.hash-map.txt
+**/.vitisWorkspace.json
+
+# ELF / バイナリ成果物
+*.elf
+*.elf.size
+*.o
+*.d
+
+# BOOT image (生成物)
+BOOT.bin
+*.bif

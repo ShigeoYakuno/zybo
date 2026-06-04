@@ -1,0 +1,23 @@
+{
+  "modelVersion": "1.0",
+  "projectName": "system_project",
+  "platform": "platform",
+  "externalComponentRefs": [
+    "app_component"
+  ],
+  "components": [],
+  "buildConfigurations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "supportedTargets": [
+        "HW_EMU",
+        "HW"
+      ]
+    }
+  ],
+  "activeBuildConfigId": "default",
+  "hostMode": "x86",
+  "isDirty": true,
+  "applicationFlow": "EMBEDDED"
+}
